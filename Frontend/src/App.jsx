@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from './components/Navbar';
 import { Routes , Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -9,7 +9,13 @@ import LoginPage from './pages/LoginPage';
 import { useAuthStore } from './Store/useAuthStore';
 
 const App = () => {
-  const { authUser } = useAuthStore(); // <-- Move here
+  const { authUser , checkAuth } = useAuthStore(); 
+
+  useEffect (() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  console.log( {authUser});
 
   return (
     <>
